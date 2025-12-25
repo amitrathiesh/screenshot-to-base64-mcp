@@ -1,0 +1,38 @@
+{
+    "name": "screenshot-to-base64-mcp",
+    "version": "1.0.0",
+    "description": "MCP server that converts image files to base64 data URIs for LMStudio vision model compatibility",
+    "main": "index.js",
+    "type": "module",
+    "bin": {
+        "screenshot-to-base64-mcp": "./index.js"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "keywords": [
+        "mcp",
+        "model-context-protocol",
+        "base64",
+        "image-conversion",
+        "lmstudio",
+        "vision-model",
+        "screenshot"
+    ],
+    "author": {
+        "name": "Amit Rathiesh",
+        "email": "amitrathiesh@webzler.com",
+        "url": "https://www.webzler.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/amitrathiesh/screenshot-to-base64-mcp.git"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.0.4"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
