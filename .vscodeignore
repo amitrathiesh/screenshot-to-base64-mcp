@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+.git/**
+.gitignore
+task.md
+implementation_plan.md
+walkthrough.md
+start-proxy.sh
+PROXY_SETUP.md
+KILOCODE_SETUP.md
+SETUP.md
+**/*.map
+.DS_Store

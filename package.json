@@ -1,23 +1,73 @@
 {
-    "name": "screenshot-to-base64-mcp",
+    "name": "lmstudio-proxy",
+    "displayName": "LMStudio Proxy (Screenshot Fix)",
+    "description": "Automatically converts image paths to base64 for LMStudio vision compatibility. The missing link for KiloCode & Cline.",
     "version": "1.0.0",
-    "description": "MCP server that converts image files to base64 data URIs for LMStudio vision model compatibility",
-    "main": "index.js",
-    "type": "module",
-    "bin": {
-        "screenshot-to-base64-mcp": "./index.js"
+    "publisher": "amitrathiesh",
+    "engines": {
+        "vscode": "^1.93.0"
+    },
+    "categories": [
+        "Other",
+        "Machine Learning"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "lmstudioProxy.start",
+                "title": "Start LMStudio Proxy"
+            },
+            {
+                "command": "lmstudioProxy.stop",
+                "title": "Stop LMStudio Proxy"
+            },
+            {
+                "command": "lmstudioProxy.restart",
+                "title": "Restart LMStudio Proxy"
+            },
+            {
+                "command": "lmstudioProxy.showLogs",
+                "title": "Show Proxy Logs"
+            }
+        ],
+        "configuration": {
+            "title": "LMStudio Proxy",
+            "properties": {
+                "lmstudioProxy.port": {
+                    "type": "number",
+                    "default": 1235,
+                    "description": "Port for the proxy server to listen on."
+                },
+                "lmstudioProxy.targetUrl": {
+                    "type": "string",
+                    "default": "http://localhost:1234",
+                    "description": "Target LMStudio server URL to forward requests to."
+                },
+                "lmstudioProxy.autoStart": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically start the proxy server when VSCode launches."
+                }
+            }
+        }
     },
     "scripts": {
-        "start": "node index.js"
+        "package": "vsce package",
+        "publish": "vsce publish",
+        "proxy": "node proxy.js",
+        "proxy:debug": "DEBUG=true node proxy.js"
     },
     "keywords": [
-        "mcp",
-        "model-context-protocol",
-        "base64",
-        "image-conversion",
+        "proxy",
         "lmstudio",
-        "vision-model",
-        "screenshot"
+        "vision",
+        "screenshot",
+        "base64",
+        "vscode-extension"
     ],
     "author": {
         "name": "Amit Rathiesh",
@@ -27,12 +77,17 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/amitrathiesh/screenshot-to-base64-mcp.git"
+        "url": "https://github.com/amitrathiesh/lmstudio-proxy.git"
     },
     "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.0.4"
+        "express": "^4.18.2",
+        "http-proxy-middleware": "^2.0.6",
+        "jimp": "^1.6.0",
+        "sharp": "^0.33.5"
     },
-    "engines": {
-        "node": ">=18.0.0"
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/vscode": "^1.93.0",
+        "@vscode/vsce": "^3.7.1"
     }
 }
